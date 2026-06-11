@@ -80,8 +80,8 @@ const Navbar = () => {
                         </a>
 
                         {/* Sign In Icon */}
-                        <Link
-                            to="/admin"
+                        <a
+                            href="https://app.oceanconstruction.us/admin"
                             className={`transition-colors p-2 rounded-full ${isScrolled
                                 ? 'text-gray-400 hover:text-ocean-600 hover:bg-ocean-50'
                                 : 'text-white/80 hover:text-white hover:bg-white/10'
@@ -89,7 +89,7 @@ const Navbar = () => {
                             title="Sign In"
                         >
                             <User size={24} />
-                        </Link>
+                        </a>
                     </div>
 
                     {/* Mobile Menu Button */}
