@@ -12,7 +12,7 @@ export interface GalleryImage {
 
 import { getMediaUrl } from './api';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://ocean-app.1m85g5.easypanel.host';
+const API_URL = import.meta.env.VITE_API_URL || 'https://app.oceanconstruction.us';
 
 export const fetchGalleryImages = async (): Promise<GalleryImage[]> => {
     const res = await fetch(`${API_URL}/api/gallery`, {
