@@ -79,7 +79,7 @@ const About = () => {
                         <div>
                             <h2 className="text-ocean-600 font-bold uppercase tracking-wide mb-2">About Us</h2>
                             <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                                building strong foundations for your future.
+                                Building strong foundations for your future.
                             </h3>
                             <p className="text-lg text-gray-600 mb-6">
                                 At Ocean Construction, we believe in more than just building structures; we build relationships. With over a decade of dedicated service, we have established ourselves as a premier construction company known for reliability, quality, and precision.
