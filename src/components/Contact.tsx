@@ -16,7 +16,7 @@ const Contact = () => {
                     </div>
                 </Reveal>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="max-w-2xl mx-auto">
                     {/* Contact Info */}
                     <div className="bg-white rounded-2xl shadow-lg p-8">
                         <h4 className="text-2xl font-bold text-gray-900 mb-8">Contact Information</h4>
@@ -29,8 +29,10 @@ const Contact = () => {
                                     </div>
                                 </div>
                                 <div className="ml-4">
-                                    <h5 className="text-lg font-bold text-gray-900">Phone</h5>
-                                    <p className="text-gray-600 mt-1">+1 (555) 123-4567</p>
+                                    <h5 className="text-lg font-bold text-gray-900">Phone & WhatsApp</h5>
+                                    <a href="https://wa.me/15551234567" target="_blank" rel="noopener noreferrer" className="text-ocean-600 font-semibold hover:underline mt-1 block">
+                                        +1 (555) 123-4567
+                                    </a>
                                     <p className="text-sm text-gray-500">Mon-Fri 8am-6pm</p>
                                 </div>
                             </div>
@@ -69,68 +71,6 @@ const Contact = () => {
                         </div>
                     </div>
 
-                    {/* Form */}
-                    <div className="bg-white rounded-2xl shadow-lg p-8">
-                        <h4 className="text-2xl font-bold text-gray-900 mb-8">Send us a Message</h4>
-                        <form className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        autoComplete="name"
-                                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-500 focus:border-transparent outline-none transition-all"
-                                        placeholder="John Doe"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        name="phone"
-                                        autoComplete="tel"
-                                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-500 focus:border-transparent outline-none transition-all"
-                                        placeholder="(555) 000-0000"
-                                    />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    autoComplete="email"
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-500 focus:border-transparent outline-none transition-all"
-                                    placeholder="john@example.com"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                                <textarea
-                                    id="message"
-                                    rows={4}
-                                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-500 focus:border-transparent outline-none transition-all"
-                                    placeholder="Tell us about your project..."
-                                    required
-                                ></textarea>
-                            </div>
-
-                            <button
-                                type="submit"
-                                className="w-full bg-ocean-600 text-white font-bold text-lg px-8 py-4 rounded-lg hover:bg-ocean-700 transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-0.5 duration-200"
-                            >
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
                 </div>
             </div>
         </section>
