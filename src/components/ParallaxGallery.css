@@ -1,0 +1,73 @@
+/* Parallax 3D Gallery Styles - Exact match to original example */
+
+#parallax-dragger,
+#parallax-ring,
+.parallax-img,
+.parallax-vignette {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    user-select: none;
+}
+
+#parallax-dragger,
+#parallax-ring,
+.parallax-img {
+    position: absolute;
+}
+
+.parallax-container {
+    perspective: 2000px;
+    width: 400px;
+    height: 300px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.parallax-img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.parallax-vignette {
+    width: 1400px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to left,
+            rgba(0, 0, 0, 1) 5%,
+            rgba(0, 0, 0, 0) 30%,
+            rgba(0, 0, 0, 0) 70%,
+            rgba(0, 0, 0, 1) 95%);
+    pointer-events: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+    .parallax-container {
+        width: 280px;
+        height: 250px;
+        perspective: 1000px;
+        /* Reduced perspective for mobile */
+    }
+
+    .parallax-vignette {
+        width: 100%;
+        /* Fix vignette width on mobile */
+    }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+    .parallax-container {
+        width: 450px;
+        height: 350px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .parallax-container {
+        width: 550px;
+        height: 400px;
+    }
+}
