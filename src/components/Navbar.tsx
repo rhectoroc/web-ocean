@@ -20,6 +20,7 @@ const Navbar = () => {
         { name: 'About', path: '/#about' },
         { name: 'Services', path: '/#services' },
         { name: 'Projects', path: '/#projects' },
+        { name: 'Gallery', path: '/#gallery' },
         { name: 'Contact', path: '/#contact' },
     ];
 
@@ -69,7 +70,16 @@ const Navbar = () => {
                             </a>
                         ))}
                         <a
-                            href="tel:+10000000000"
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                                if (isMobile) {
+                                    window.location.href = "whatsapp://send?phone=15551234567";
+                                } else {
+                                    window.open("https://wa.me/15551234567", "_blank");
+                                }
+                            }}
                             className={`px-5 py-2.5 rounded-md font-medium transition-all hover:shadow-lg hover:-translate-y-0.5 flex items-center gap-2 ${isScrolled
                                 ? 'bg-ocean-600 text-white hover:bg-ocean-700'
                                 : 'bg-white/10 backdrop-blur-md text-white border border-white/20 hover:bg-white/20'
@@ -138,7 +148,11 @@ const Navbar = () => {
                             </a>
                         ))}
                         <a
-                            href="tel:+10000000000"
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                window.location.href = "whatsapp://send?phone=15551234567";
+                            }}
                             className="block w-full text-center px-4 py-4 mt-4 bg-ocean-600 text-white font-bold rounded-md min-h-[44px]"
                         >
                             CALL US NOW
