@@ -222,14 +222,10 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                         </div>
 
                         </div>
-
-                        {/* Project Info */}
-
                     </div>
                 </div>
             </div>
-            </div>
-
+            
             <style>{`
                 @keyframes fade-in {
                     from { opacity: 0; }

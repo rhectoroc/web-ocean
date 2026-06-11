@@ -278,8 +278,6 @@ const ServicesSection = () => {
                         ))}
                     </div>
                 </div>
-
-                </div>
             </section>
 
             {/* Bottom Section: Service Grid with Parallax Look */}
