@@ -234,10 +234,45 @@ const ServicesSection = () => {
                     </div>
                 </div>
 
-                {/* Decorative Bottom Shape */}
-                <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180">
-                    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-[calc(100%+1.3px)] h-[50px] fill-gray-50">
-                        <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z"></path>
+                {/* Animated Ocean Wave Transition */}
+                <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+                    <svg className="relative block w-full h-[80px] md:h-[120px]" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                        <style>
+                            {`
+                                .wave-front { animation: wave-anim 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite; transform-origin: center bottom; }
+                                .wave-back { animation: wave-anim-reverse 12s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite; transform-origin: center bottom; }
+                                @keyframes wave-anim {
+                                    0% { transform: translateX(0) scaleY(1); }
+                                    50% { transform: translateX(-25%) scaleY(0.85); }
+                                    100% { transform: translateX(-50%) scaleY(1); }
+                                }
+                                @keyframes wave-anim-reverse {
+                                    0% { transform: translateX(-50%) scaleY(0.9); }
+                                    50% { transform: translateX(-25%) scaleY(1.1); }
+                                    100% { transform: translateX(0) scaleY(0.9); }
+                                }
+                            `}
+                        </style>
+                        <defs>
+                            <linearGradient id="wave-grad-front" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#111827" /> {/* gray-900 to match bottom section */}
+                                <stop offset="100%" stopColor="#0F172A" /> {/* slate-900 */}
+                            </linearGradient>
+                            <linearGradient id="wave-grad-back" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.3" /> {/* ocean-500 */}
+                                <stop offset="100%" stopColor="#0284c7" stopOpacity="0.1" /> {/* ocean-600 */}
+                            </linearGradient>
+                        </defs>
+                        
+                        {/* Background Wave */}
+                        <g className="wave-back">
+                            <path d="M0 45C150 45 300 0 600 0C900 0 1050 45 1200 45C1350 45 1500 0 1800 0C2100 0 2250 45 2400 45V120H0V45Z" fill="url(#wave-grad-back)"></path>
+                        </g>
+                        
+                        {/* Foreground Wave */}
+                        <g className="wave-front">
+                            <path d="M0 60C150 60 300 15 600 15C900 15 1050 60 1200 60C1350 60 1500 15 1800 15C2100 15 2250 60 2400 60V120H0V60Z" fill="url(#wave-grad-front)"></path>
+                        </g>
                     </svg>
                 </div>
             </section>
