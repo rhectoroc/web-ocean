@@ -173,7 +173,7 @@ const ParallaxGallery = () => {
                     <div className="w-full max-w-5xl px-4 md:px-24 flex justify-center" onClick={(e) => e.stopPropagation()}>
                         <img 
                             src={`${API_URL}${images[selectedImage].image_url}`} 
-                            alt={images[selectedImage].title}
+                            alt={images[selectedImage].title || undefined}
                             className="max-h-[85vh] max-w-full object-contain rounded-lg shadow-2xl"
                         />
                     </div>
