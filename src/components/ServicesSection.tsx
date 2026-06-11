@@ -11,7 +11,9 @@ import {
     ShieldCheck,
     ArrowRight,
     X,
-    CheckCircle2
+    CheckCircle2,
+    Volume2,
+    VolumeX
 } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -21,7 +23,27 @@ gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const ServicesSection = () => {
     const container = useRef(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
     const [selectedService, setSelectedService] = useState<number | null>(null);
+    const [isMuted, setIsMuted] = useState(true); // Muted by default to ensure autoplay
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.volume = 0.05; // 5% volume for subtle background
+        }
+    }, []);
+
+    const toggleMute = () => {
+        if (videoRef.current) {
+            videoRef.current.muted = !isMuted;
+            setIsMuted(!isMuted);
+            if (isMuted) {
+                videoRef.current.play().catch(() => {
+                    console.log("Browser blocked audio play");
+                });
+            }
+        }
+    };
 
     useGSAP(() => {
         // Animate Process Steps
@@ -203,12 +225,35 @@ const ServicesSection = () => {
     ];
 
     return (
-        <div ref={container} id="services" className="font-sans scroll-mt-28">
+        <div ref={container} id="services" className="font-sans scroll-mt-28 relative">
+            {/* Background Video Layer */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <video
+                    ref={videoRef}
+                    src="/Abstract_Deep_Sea_Wallpaper_Generation.mp4"
+                    autoPlay
+                    loop
+                    muted={isMuted}
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                />
+                {/* Dark overlay to ensure text readability */}
+                <div className="absolute inset-0 bg-ocean-900/60 z-10 mix-blend-multiply"></div>
+                <div className="absolute inset-0 bg-black/40 z-20"></div>
+            </div>
+
+            {/* Audio Toggle Button */}
+            <button
+                onClick={toggleMute}
+                className="absolute top-6 right-6 sm:top-12 sm:right-12 z-30 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white px-4 py-3 rounded-full transition-all border border-white/20 flex items-center justify-center gap-3 group"
+                aria-label="Toggle background sound"
+            >
+                {isMuted ? <VolumeX size={20} className="group-hover:scale-110 transition-transform" /> : <Volume2 size={20} className="group-hover:scale-110 transition-transform" />}
+                <span className="text-sm font-medium hidden sm:block tracking-wide uppercase">{isMuted ? "Unmute Ocean" : "Mute Ocean"}</span>
+            </button>
+
             {/* Top Section: Process Flow */}
-            <section id="process-flow" className="py-20 bg-ocean-900 text-white relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
-                    <div className="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
-                </div>
+            <section id="process-flow" className="py-20 text-white relative z-20">
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center mb-16">
@@ -234,56 +279,11 @@ const ServicesSection = () => {
                     </div>
                 </div>
 
-                {/* Animated Ocean Wave Transition */}
-                <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
-                    <svg className="relative block w-full h-[80px] md:h-[120px]" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                        <style>
-                            {`
-                                .wave-front { animation: wave-anim 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite; transform-origin: center bottom; }
-                                .wave-back { animation: wave-anim-reverse 12s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite; transform-origin: center bottom; }
-                                @keyframes wave-anim {
-                                    0% { transform: translateX(0) scaleY(1); }
-                                    50% { transform: translateX(-25%) scaleY(0.85); }
-                                    100% { transform: translateX(-50%) scaleY(1); }
-                                }
-                                @keyframes wave-anim-reverse {
-                                    0% { transform: translateX(-50%) scaleY(0.9); }
-                                    50% { transform: translateX(-25%) scaleY(1.1); }
-                                    100% { transform: translateX(0) scaleY(0.9); }
-                                }
-                            `}
-                        </style>
-                        <defs>
-                            <linearGradient id="wave-grad-front" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#111827" /> {/* gray-900 to match bottom section */}
-                                <stop offset="100%" stopColor="#0F172A" /> {/* slate-900 */}
-                            </linearGradient>
-                            <linearGradient id="wave-grad-back" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0.3" /> {/* ocean-500 */}
-                                <stop offset="100%" stopColor="#0284c7" stopOpacity="0.1" /> {/* ocean-600 */}
-                            </linearGradient>
-                        </defs>
-                        
-                        {/* Background Wave */}
-                        <g className="wave-back">
-                            <path d="M0 45C150 45 300 0 600 0C900 0 1050 45 1200 45C1350 45 1500 0 1800 0C2100 0 2250 45 2400 45V120H0V45Z" fill="url(#wave-grad-back)"></path>
-                        </g>
-                        
-                        {/* Foreground Wave */}
-                        <g className="wave-front">
-                            <path d="M0 60C150 60 300 15 600 15C900 15 1050 60 1200 60C1350 60 1500 15 1800 15C2100 15 2250 60 2400 60V120H0V60Z" fill="url(#wave-grad-front)"></path>
-                        </g>
-                    </svg>
                 </div>
             </section>
 
             {/* Bottom Section: Service Grid with Parallax Look */}
-            <section id="service-grid" className="py-24 bg-gray-50 relative">
-                {/* Background Gradient - No external images */}
-                <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-ocean-900 to-gray-800">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(14,165,233,0.15),transparent_50%)]"></div>
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(14,165,233,0.1),transparent_50%)]"></div>
-                </div>
+            <section id="service-grid" className="py-24 relative z-20">
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                     <div className="text-center mb-20">
