@@ -14,7 +14,7 @@ const FloatingChatbot = () => {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: '1',
-            text: '¡Hola! / Hello! Soy el Agente virtual de OceanConstruction. ¿En qué puedo ayudarte hoy? / How can I help you today?',
+            text: 'Hello! I am the Ocean Construction Virtual Agent. How can I help you today?',
             sender: 'bot',
             timestamp: new Date()
         }
@@ -84,7 +84,7 @@ const FloatingChatbot = () => {
             // Add bot response
             const botMessage: Message = {
                 id: (Date.now() + 1).toString(),
-                text: data.response || data.message || data.output || 'Lo siento, no pude procesar tu mensaje.',
+                text: data.response || data.message || data.output || 'Sorry, I could not process your message.',
                 sender: 'bot',
                 timestamp: new Date()
             };
@@ -93,10 +93,10 @@ const FloatingChatbot = () => {
         } catch (error) {
             console.error('Error sending message:', error);
 
-            let errorText = 'Lo siento, hubo un error al conectar con el servidor.';
+            let errorText = 'Sorry, there was an error connecting to the server.';
 
             if (error instanceof TypeError && error.message.includes('fetch')) {
-                errorText = 'No se pudo conectar al servidor. Verifica tu conexión a internet o que el webhook esté activo.';
+                errorText = 'Could not connect to the server. Check your internet connection.';
             } else if (error instanceof Error) {
                 errorText = `Error: ${error.message}`;
             }
@@ -142,7 +142,7 @@ const FloatingChatbot = () => {
                                 <MessageCircle size={24} />
                             </div>
                             <div>
-                                <h3 className="font-bold text-white leading-tight">Agente virtual de<br/>OceanConstruction</h3>
+                                <h3 className="font-bold text-white leading-tight">Ocean Construction<br/>Virtual Agent</h3>
                             </div>
                         </div>
                         <button
@@ -189,7 +189,7 @@ const FloatingChatbot = () => {
                             type="text"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
-                            placeholder="Escribe tu mensaje..."
+                            placeholder="Type your message..."
                             disabled={isLoading}
                             className="flex-1 px-4 py-3 border-0 focus:outline-none bg-transparent"
                         />
