@@ -74,7 +74,7 @@ const Hero = () => {
 
     return (
         <div ref={container} className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
-            <div className="absolute inset-0 z-0 bg-black">
+            <div className="absolute inset-0 z-0 bg-ocean-950">
                 <video
                     ref={videoRef}
                     key={videos[currentVideoIndex]} // El key fuerza a React a recargar el video limpio
@@ -83,7 +83,7 @@ const Hero = () => {
                     playsInline
                     autoPlay
                     onEnded={handleVideoEnded}
-                    className="absolute inset-0 w-full h-full object-cover animate-fade-in"
+                    className="absolute inset-0 w-full h-full object-cover animate-cinematic-reveal"
                 ></video>
 
                 {/* Overlay - Lightened from bg-black/50 to bg-black/30 */}

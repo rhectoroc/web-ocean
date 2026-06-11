@@ -32,10 +32,15 @@ export default {
                 'fade-in': {
                     '0%': { opacity: '0' },
                     '100%': { opacity: '1' },
+                },
+                'cinematic-reveal': {
+                    '0%': { opacity: '0', filter: 'blur(20px)', transform: 'scale(1.05)' },
+                    '100%': { opacity: '1', filter: 'blur(0px)', transform: 'scale(1)' },
                 }
             },
             animation: {
                 'fade-in': 'fade-in 1s ease-in-out',
+                'cinematic-reveal': 'cinematic-reveal 2s cubic-bezier(0.22, 1, 0.36, 1) forwards',
             }
         },
     },
