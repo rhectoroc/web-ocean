@@ -126,10 +126,11 @@ const ParallaxGallery = () => {
     return (
         <section id="gallery" className="py-20 bg-black relative overflow-hidden scroll-mt-28">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                <div className="text-center mb-16 relative">
+                    <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white via-ocean-400 to-white animate-shine drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] tracking-wide">
                         Our Work Gallery
                     </h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-ocean-500 to-cyan-400 mx-auto rounded-full shadow-[0_0_10px_rgba(14,165,233,0.5)]"></div>
                 </div>
 
                 <div className="parallax-container" ref={containerRef}>
@@ -192,6 +193,18 @@ const ParallaxGallery = () => {
                     </button>
                 </div>
             )}
+
+            <style>{`
+                @keyframes shine {
+                    to {
+                        background-position: 200% center;
+                    }
+                }
+                .animate-shine {
+                    background-size: 200% auto;
+                    animation: shine 3s linear infinite;
+                }
+            `}</style>
         </section>
     );
 };
