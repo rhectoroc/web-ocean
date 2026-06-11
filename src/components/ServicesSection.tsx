@@ -203,7 +203,7 @@ const ServicesSection = () => {
     ];
 
     return (
-        <div ref={container} id="services" className="font-sans">
+        <div ref={container} id="services" className="font-sans scroll-mt-28">
             {/* Top Section: Process Flow */}
             <section id="process-flow" className="py-20 bg-ocean-900 text-white relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">

@@ -165,7 +165,7 @@ const ProjectsSection = () => {
 
     if (loading) {
         return (
-            <section id="projects" className="py-20 bg-gradient-to-b from-white to-gray-50 min-h-[400px] flex items-center justify-center">
+            <section id="projects" className="py-20 bg-gradient-to-b from-white to-gray-50 min-h-[400px] flex items-center justify-center scroll-mt-28">
                 <div className="flex flex-col items-center gap-4">
                     <div className="w-16 h-16 border-4 border-ocean-200 border-t-ocean-600 rounded-full animate-spin" />
                     <p className="text-gray-500 font-medium">Loading projects...</p>
@@ -176,7 +176,7 @@ const ProjectsSection = () => {
 
     return (
         <>
-            <section id="projects" className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+            <section id="projects" className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden scroll-mt-28">
                 {/* Background Decorations */}
                 <div className="absolute top-0 left-0 w-96 h-96 bg-ocean-100/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-100/30 rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />

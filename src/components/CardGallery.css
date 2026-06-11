@@ -100,14 +100,29 @@
 /* Mobile responsiveness */
 @media (max-width: 640px) {
     .card-container {
-        height: 400px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
         width: 100%;
         max-width: 100%;
+        background: transparent !important;
+        box-shadow: none !important;
     }
     
+    .card, .card-d3 {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        height: 250px !important;
+    }
+
     .card:hover,
     .card-d3:hover {
-        height: 400px !important;
+        height: 250px !important;
         width: 100% !important;
     }
 }

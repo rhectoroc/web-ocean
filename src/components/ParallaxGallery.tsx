@@ -62,11 +62,14 @@ const ParallaxGallery = () => {
         gsap.set(dragger, { opacity: 0 });
         gsap.set(ring, { rotationY: 180 });
 
+        const isMobile = window.innerWidth < 640;
+        const radius = isMobile ? 250 : 600;
+
         imgs.forEach((img, i) => {
             gsap.set(img, {
                 rotateY: i * -60,
-                transformOrigin: '50% 50% 600px',
-                z: -600,
+                transformOrigin: `50% 50% ${radius}px`,
+                z: -radius,
                 // backgroundPosition is simple center, we rely on the 3D rotation for the effect
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
@@ -121,7 +124,7 @@ const ParallaxGallery = () => {
     }
 
     return (
-        <section id="gallery" className="py-20 bg-black relative overflow-hidden">
+        <section id="gallery" className="py-20 bg-black relative overflow-hidden scroll-mt-28">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">

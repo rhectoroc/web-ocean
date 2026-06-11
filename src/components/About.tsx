@@ -23,7 +23,7 @@ const About = () => {
     ];
 
     return (
-        <section id="about" className="py-20 bg-white">
+        <section id="about" className="py-20 bg-white scroll-mt-28">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <Reveal width="100%">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
