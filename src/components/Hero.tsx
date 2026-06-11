@@ -14,30 +14,19 @@ const Hero = () => {
 
     // Video Playlist Optimization
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-    const videos = ["/hero.mp4", "/hero2.mp4", "/hero3.mp4"];
-    const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-    useEffect(() => {
-        // Ensure the current video plays
-        const currentVideo = videoRefs.current[currentVideoIndex];
-
-        if (currentVideo) {
-            currentVideo.currentTime = 0;
-            currentVideo.play().catch(e => console.log("Auto-play prevented:", e));
-        }
-
-        // Pause others to save resources, but keep them ready
-        videoRefs.current.forEach((vid, idx) => {
-            if (idx !== currentVideoIndex && vid) {
-                if (!vid.paused) vid.pause();
-            }
-        });
-    }, [currentVideoIndex]);
+    const videos = ["/hero2.mp4", "/hero.mp4", "/hero3.mp4"]; // Puse hero2 primero porque es el más ligero (7MB)
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     const handleVideoEnded = () => {
         const nextIndex = (currentVideoIndex + 1) % videos.length;
         setCurrentVideoIndex(nextIndex);
     };
+
+    useEffect(() => {
+        if (videoRef.current) {
+            videoRef.current.play().catch(e => console.log("Auto-play prevented:", e));
+        }
+    }, [currentVideoIndex]);
 
     useGSAP(() => {
         // Initial Elegant Entrance - Fade and reveal
@@ -85,24 +74,17 @@ const Hero = () => {
 
     return (
         <div ref={container} className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
-            {/* Background Video Layer */}
-            <div className="absolute inset-0 z-0">
-                {videos.map((src, index) => (
-                    <video
-                        key={src}
-                        ref={(el) => { if (el) videoRefs.current[index] = el; }}
-                        muted
-                        playsInline
-                        preload={index === 0 ? "auto" : "none"}
-                        onEnded={() => {
-                            if (index === currentVideoIndex) handleVideoEnded();
-                        }}
-                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentVideoIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                            }`}
-                    >
-                        <source src={src} type="video/mp4" />
-                    </video>
-                ))}
+            <div className="absolute inset-0 z-0 bg-black">
+                <video
+                    ref={videoRef}
+                    key={videos[currentVideoIndex]} // El key fuerza a React a recargar el video limpio
+                    src={videos[currentVideoIndex]}
+                    muted
+                    playsInline
+                    autoPlay
+                    onEnded={handleVideoEnded}
+                    className="absolute inset-0 w-full h-full object-cover animate-fade-in"
+                ></video>
 
                 {/* Overlay - Lightened from bg-black/50 to bg-black/30 */}
                 <div className="absolute inset-0 bg-black/30 z-20"></div>
