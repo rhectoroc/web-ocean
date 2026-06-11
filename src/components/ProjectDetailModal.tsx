@@ -102,7 +102,7 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                                     key={index}
                                     src={img.url}
                                     alt={`${project.title} - Image ${index + 1}`}
-                                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
                                         }`}
                                 />
                             ))}
@@ -146,7 +146,7 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                                         <img
                                             src={img.url}
                                             alt={`Thumbnail ${index + 1}`}
-                                            className="w-full h-full object-cover"
+                                            className="w-full h-full object-contain bg-gray-900"
                                         />
                                     </button>
                                 ))}

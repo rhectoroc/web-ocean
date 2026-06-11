@@ -58,7 +58,7 @@ const ProjectCard = ({ project, index, onClick }: { project: Project; index: num
                                 key={imgIndex}
                                 src={img.url}
                                 alt={`${project.title} - Image ${imgIndex + 1}`}
-                                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${imgIndex === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                                className={`absolute inset-0 w-full h-full object-contain bg-gray-50 transition-opacity duration-1000 ${imgIndex === currentImageIndex ? 'opacity-100' : 'opacity-0'
                                     }`}
                                 onError={(e) => {
                                     (e.target as HTMLImageElement).src = 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop&fm=webp';
