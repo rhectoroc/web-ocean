@@ -1,4 +1,4 @@
-export const API_URL = import.meta.env.VITE_API_URL || 'https://app.oceanconstruction.us/api';
+export const API_URL = import.meta.env.VITE_API_URL || 'https://ocean-app.1m85g5.easypanel.host/api';
 
 export interface Service {
     id: number;
@@ -24,7 +24,7 @@ export interface Project {
 export const getMediaUrl = (url?: string | null) => {
     if (!url) return '';
     if (url.startsWith('/upload')) {
-        return `https://app.oceanconstruction.us${url}`;
+        return `https://ocean-app.1m85g5.easypanel.host${url}`;
     }
     return url;
 };
