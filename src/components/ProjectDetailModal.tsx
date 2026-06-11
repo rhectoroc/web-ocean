@@ -100,7 +100,7 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
 
                     <div className="flex flex-col md:flex-row">
                         {/* Image Carousel */}
-                    <div className="md:w-3/5 relative bg-gray-900">
+                    <div className="md:w-3/5 relative bg-ocean-900">
                         <div className="aspect-[4/3] relative">
                             {mediaItems.map((media, index) => (
                                 media.type === 'video' ? (
@@ -111,7 +111,7 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                                         loop
                                         muted
                                         playsInline
-                                        className={`absolute inset-0 w-full h-full object-contain bg-gray-900 transition-opacity duration-500 ${index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                                        className={`absolute inset-0 w-full h-full object-contain bg-ocean-900 transition-opacity duration-500 ${index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                                             }`}
                                     />
                                 ) : (
@@ -151,7 +151,7 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
 
                         {/* Thumbnail Navigation */}
                         {mediaItems.length > 1 && (
-                            <div className="flex gap-2 p-4 overflow-x-auto bg-gray-800">
+                            <div className="flex gap-2 p-4 overflow-x-auto bg-ocean-800">
                                 {mediaItems.map((media, index) => (
                                     <button
                                         key={index}
@@ -162,14 +162,14 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                                             }`}
                                     >
                                         {media.type === 'video' ? (
-                                            <div className="w-full h-full bg-gray-900 flex items-center justify-center">
+                                            <div className="w-full h-full bg-ocean-900 flex items-center justify-center">
                                                 <svg className="w-8 h-8 text-white opacity-70" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z" /></svg>
                                             </div>
                                         ) : (
                                             <img
                                                 src={media.url}
                                                 alt={`Thumbnail ${index + 1}`}
-                                                className="w-full h-full object-contain bg-gray-900"
+                                                className="w-full h-full object-contain bg-ocean-900"
                                             />
                                         )}
                                     </button>
