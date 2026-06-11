@@ -230,7 +230,7 @@ const ServicesSection = () => {
             <div className="absolute inset-0 z-0 overflow-hidden">
                 <video
                     ref={videoRef}
-                    src="/Abstract_Deep_Sea_Wallpaper_Generation.mp4"
+                    src="/Abstract_Deep_Sea_Wallpaper_Generation.webm"
                     autoPlay
                     loop
                     muted={isMuted}
