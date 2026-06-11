@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ocean-frontend.easypanel.host/sitemap.xml
+Sitemap: https://oceanconstruction.us/sitemap.xml
