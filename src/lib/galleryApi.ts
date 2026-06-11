@@ -10,7 +10,9 @@ export interface GalleryImage {
     updated_at: string;
 }
 
-const API_URL = import.meta.env.VITE_API_URL || '';
+import { getMediaUrl } from './api';
+
+const API_URL = import.meta.env.VITE_API_URL || 'https://app.oceanconstruction.us';
 
 export const fetchGalleryImages = async (): Promise<GalleryImage[]> => {
     const res = await fetch(`${API_URL}/api/gallery`, {
@@ -23,7 +25,12 @@ export const fetchGalleryImages = async (): Promise<GalleryImage[]> => {
 export const fetchActiveGalleryImages = async (): Promise<GalleryImage[]> => {
     const res = await fetch(`${API_URL}/api/gallery/active`);
     if (!res.ok) throw new Error('Failed to fetch active gallery images');
-    return res.json();
+    const images = await res.json();
+    return images.map((img: any) => ({
+        ...img,
+        image_url: getMediaUrl(img.image_url),
+        thumbnail_url: getMediaUrl(img.thumbnail_url)
+    }));
 };
 
 export const createGalleryImage = async (formData: FormData): Promise<GalleryImage> => {
