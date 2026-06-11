@@ -293,22 +293,22 @@ const ServicesSection = () => {
                         <div className="w-24 h-1 bg-ocean-500 mx-auto rounded-full"></div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                         {services.map((service, index) => (
                             <div
                                 key={index}
                                 onClick={() => setSelectedService(index)}
-                                className="service-card group relative bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 cursor-pointer"
+                                className="service-card group relative bg-white/5 backdrop-blur-md border border-white/10 p-4 sm:p-8 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 cursor-pointer"
                             >
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-ocean-500/10 rounded-bl-[100px] -mr-8 -mt-8 transition-all group-hover:bg-ocean-500/20"></div>
+                                <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-ocean-500/10 rounded-bl-[100px] -mr-8 -mt-8 transition-all group-hover:bg-ocean-500/20"></div>
 
                                 <div className="flex flex-col items-center text-center">
-                                    <div className="mb-6 p-4 bg-transparent border-2 border-ocean-400/30 rounded-full text-ocean-400 group-hover:text-white group-hover:bg-ocean-500 group-hover:border-ocean-500 transition-all duration-300 transform group-hover:rotate-6">
-                                        <service.icon size={36} />
+                                    <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-transparent border-2 border-ocean-400/30 rounded-full text-ocean-400 group-hover:text-white group-hover:bg-ocean-500 group-hover:border-ocean-500 transition-all duration-300 transform group-hover:rotate-6">
+                                        <service.icon className="w-6 h-6 sm:w-9 sm:h-9" />
                                     </div>
-                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-ocean-300 transition-colors">{service.title}</h3>
-                                    <p className="text-gray-300 group-hover:text-white transition-colors">{service.description}</p>
-                                    <p className="text-ocean-400 text-sm mt-4 opacity-0 group-hover:opacity-100 transition-opacity">Click for more details →</p>
+                                    <h3 className="text-lg sm:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-ocean-300 transition-colors">{service.title}</h3>
+                                    <p className="text-gray-300 text-xs sm:text-base group-hover:text-white transition-colors">{service.description}</p>
+                                    <p className="text-ocean-400 text-xs sm:text-sm mt-2 sm:mt-4 opacity-0 group-hover:opacity-100 transition-opacity">Click for more details →</p>
                                 </div>
                             </div>
                         ))}
@@ -319,26 +319,27 @@ const ServicesSection = () => {
             {/* Service Detail Modal */}
             {selectedService !== null && (
                 <div
-                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+                    className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-sm"
                     onClick={() => setSelectedService(null)}
                 >
-                    <div
-                        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        {/* Close Button */}
-                        <button
-                            onClick={() => setSelectedService(null)}
-                            className="sticky top-4 right-4 float-right z-10 p-3 bg-ocean-900/80 text-white rounded-full hover:bg-ocean-800 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
-                            aria-label="Close modal"
+                    <div className="flex min-h-full items-center justify-center p-4">
+                        <div
+                            className="relative w-full max-w-3xl bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl"
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <X size={24} />
-                        </button>
+                            {/* Close Button */}
+                            <button
+                                onClick={() => setSelectedService(null)}
+                                className="absolute top-4 right-4 z-10 p-2 sm:p-3 bg-ocean-900/80 text-white rounded-full hover:bg-ocean-800 transition-colors flex items-center justify-center"
+                                aria-label="Close modal"
+                            >
+                                <X size={20} />
+                            </button>
 
-                        <div className="p-8 md:p-12">
-                            {/* Header */}
-                            <div className="flex items-center gap-6 mb-8">
-                                <div className="p-4 bg-ocean-500 text-white rounded-2xl">
+                            <div className="p-6 md:p-12">
+                                {/* Header */}
+                                <div className="flex items-center gap-4 sm:gap-6 mb-6">
+                                    <div className="p-3 sm:p-4 bg-ocean-500 text-white rounded-2xl hidden sm:block">
                                     {(() => {
                                         const ServiceIcon = services[selectedService].icon;
                                         return <ServiceIcon size={48} />;
@@ -403,6 +404,7 @@ const ServicesSection = () => {
                                 >
                                     Get a Free Quote
                                 </a>
+                            </div>
                             </div>
                         </div>
                     </div>

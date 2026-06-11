@@ -111,10 +111,10 @@ const Hero = () => {
             {/* Content */}
             <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col justify-center h-full pt-20">
                 <div className="mb-6 relative z-10"> {/* Removed overflow-hidden and added relative */}
-                    <h1 ref={titleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight mb-2 leading-[1.1]">
+                    <h1 ref={titleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tight mb-2 leading-[1.1] drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
                         An <span className="text-ocean-400">OCEAN</span> of ideas
                     </h1>
-                    <h1 ref={subtitleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-ocean-400 tracking-tight leading-[1.1]">
+                    <h1 ref={subtitleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-ocean-400 tracking-tight leading-[1.1] drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]">
                         for your home!
                     </h1>
                 </div>
@@ -124,18 +124,18 @@ const Hero = () => {
                         Professional construction and remodeling services tailored to your needs. Quality, integrity, and excellence in every detail.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center sm:justify-start w-full">
+                    <div className="flex flex-row gap-2 sm:gap-4 justify-center sm:justify-start w-full">
                         <a
                             href="#projects"
-                            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border-2 border-transparent text-lg font-bold rounded-md text-white bg-ocean-600 hover:bg-ocean-700 md:py-4 md:text-xl md:px-10 transition-all min-h-[44px] hover:scale-105 hover:shadow-xl hover:ring-4 hover:ring-ocean-500/30"
+                            className="w-auto inline-flex items-center justify-center px-4 py-3 sm:px-8 sm:py-4 border-2 border-transparent text-sm sm:text-lg font-bold rounded-md text-white bg-ocean-600 hover:bg-ocean-700 transition-all min-h-[44px] hover:scale-105 hover:shadow-xl hover:ring-4 hover:ring-ocean-500/30"
                         >
                             View Projects
                         </a>
                         <a
                             href="#contact"
-                            className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border-2 border-white text-lg font-bold rounded-md text-white hover:bg-white hover:text-ocean-900 md:py-4 md:text-xl md:px-10 transition-all min-h-[44px] gap-2 hover:scale-105 hover:shadow-xl"
+                            className="w-auto inline-flex items-center justify-center px-4 py-3 sm:px-8 sm:py-4 border-2 border-white text-sm sm:text-lg font-bold rounded-md text-white hover:bg-white hover:text-ocean-900 transition-all min-h-[44px] gap-2 hover:scale-105 hover:shadow-xl"
                         >
-                            Contact Us <ArrowRight size={20} />
+                            Contact Us <ArrowRight size={16} className="sm:w-5 sm:h-5" />
                         </a>
                     </div>
                 </Reveal>

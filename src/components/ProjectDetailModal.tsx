@@ -75,25 +75,26 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fade-in">
+        <div className="fixed inset-0 z-50 overflow-y-auto animate-fade-in">
             {/* Backdrop */}
             <div
-                className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+                className="fixed inset-0 bg-black/70 backdrop-blur-sm"
                 onClick={onClose}
             />
 
-            {/* Modal */}
-            <div className="relative bg-white rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden animate-scale-in">
-                {/* Close Button */}
-                <button
-                    onClick={onClose}
-                    className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-all hover:scale-110"
-                >
-                    <X size={24} className="text-gray-700" />
-                </button>
+            <div className="flex min-h-full items-center justify-center p-4">
+                {/* Modal */}
+                <div className="relative bg-white rounded-2xl shadow-2xl max-w-5xl w-full overflow-hidden animate-scale-in">
+                    {/* Close Button */}
+                    <button
+                        onClick={onClose}
+                        className="absolute top-4 right-4 z-10 bg-white/90 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-all hover:scale-110"
+                    >
+                        <X size={24} className="text-gray-700" />
+                    </button>
 
-                <div className="flex flex-col md:flex-row max-h-[90vh]">
-                    {/* Image Carousel */}
+                    <div className="flex flex-col md:flex-row">
+                        {/* Image Carousel */}
                     <div className="md:w-3/5 relative bg-gray-900">
                         <div className="aspect-[4/3] relative">
                             {orderedImages.map((img, index) => (
@@ -154,7 +155,7 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                     </div>
 
                     {/* Project Details */}
-                    <div className="md:w-2/5 p-6 md:p-8 overflow-y-auto">
+                    <div className="md:w-2/5 p-6 md:p-8">
                         {/* Tags */}
                         {project.tags && project.tags.length > 0 && (
                             <div className="flex flex-wrap gap-2 mb-4">
@@ -220,10 +221,13 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                             </button>
                         </div>
 
+                        </div>
+
                         {/* Project Info */}
 
                     </div>
                 </div>
+            </div>
             </div>
 
             <style>{`
