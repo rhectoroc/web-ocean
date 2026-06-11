@@ -79,6 +79,8 @@ const Contact = () => {
                                     <input
                                         type="text"
                                         id="name"
+                                        name="name"
+                                        autoComplete="name"
                                         className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-500 focus:border-transparent outline-none transition-all"
                                         placeholder="John Doe"
                                         required
@@ -89,6 +91,8 @@ const Contact = () => {
                                     <input
                                         type="tel"
                                         id="phone"
+                                        name="phone"
+                                        autoComplete="tel"
                                         className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-500 focus:border-transparent outline-none transition-all"
                                         placeholder="(555) 000-0000"
                                     />
@@ -100,6 +104,8 @@ const Contact = () => {
                                 <input
                                     type="email"
                                     id="email"
+                                    name="email"
+                                    autoComplete="email"
                                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-ocean-500 focus:border-transparent outline-none transition-all"
                                     placeholder="john@example.com"
                                     required
