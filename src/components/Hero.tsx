@@ -14,7 +14,7 @@ const Hero = () => {
 
     // Video Playlist Optimization
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-    const videos = ["/hero2.mp4", "/hero.mp4", "/hero3.mp4"]; // Puse hero2 primero porque es el más ligero (7MB)
+    const videos = ["/hero2.webm", "/hero.webm", "/hero3.webm"]; // Actualizado a formato WebM
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const handleVideoEnded = () => {
