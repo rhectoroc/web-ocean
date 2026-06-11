@@ -14,7 +14,7 @@ const FloatingChatbot = () => {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: '1',
-            text: '¡Hola! Soy Pushi, tu asistente virtual de Ocean. ¿En qué puedo ayudarte hoy?',
+            text: '¡Hola! / Hello! Soy el Agente virtual de OceanConstruction. ¿En qué puedo ayudarte hoy? / How can I help you today?',
             sender: 'bot',
             timestamp: new Date()
         }
@@ -24,7 +24,10 @@ const FloatingChatbot = () => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const sessionId = useRef(generateSessionId());
 
-    const WEBHOOK_URL = 'https://ocean-n8n.1m85g5.easypanel.host/webhook/ebbaff41-f04a-4207-8b4b-17789300b26b/chat';
+    // Apuntamos al backend propio
+    const WEBHOOK_URL = import.meta.env.VITE_API_URL 
+        ? `${import.meta.env.VITE_API_URL}/bot/chat` 
+        : 'https://app.oceanconstruction.us/api/bot/chat';
 
     function generateSessionId() {
         return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
@@ -139,8 +142,7 @@ const FloatingChatbot = () => {
                                 <MessageCircle size={24} />
                             </div>
                             <div>
-                                <h3 className="font-bold text-white">Pushi</h3>
-                                <p className="text-xs text-ocean-100">Ocean Assistant</p>
+                                <h3 className="font-bold text-white leading-tight">Agente virtual de<br/>OceanConstruction</h3>
                             </div>
                         </div>
                         <button
