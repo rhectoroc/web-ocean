@@ -19,6 +19,11 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
         ? [sortedImages[coverIndex], ...sortedImages.filter((_, i) => i !== coverIndex)]
         : sortedImages;
 
+    const mediaItems = [
+        ...orderedImages.map(img => ({ type: 'image', url: img.url })),
+        ...(project.video_url ? [{ type: 'video', url: project.video_url }] : [])
+    ];
+
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     // Handle Escape key
@@ -39,11 +44,11 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
     }, []);
 
     const nextImage = () => {
-        setCurrentImageIndex((prev) => (prev + 1) % orderedImages.length);
+        setCurrentImageIndex((prev) => (prev + 1) % mediaItems.length);
     };
 
     const prevImage = () => {
-        setCurrentImageIndex((prev) => (prev - 1 + orderedImages.length) % orderedImages.length);
+        setCurrentImageIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length);
     };
 
     const scrollToContact = () => {
@@ -97,28 +102,41 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                         {/* Image Carousel */}
                     <div className="md:w-3/5 relative bg-gray-900">
                         <div className="aspect-[4/3] relative">
-                            {orderedImages.map((img, index) => (
-                                <img
-                                    key={index}
-                                    src={img.url}
-                                    alt={`${project.title} - Image ${index + 1}`}
-                                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                                        }`}
-                                />
+                            {mediaItems.map((media, index) => (
+                                media.type === 'video' ? (
+                                    <video
+                                        key={index}
+                                        src={media.url}
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className={`absolute inset-0 w-full h-full object-contain bg-gray-900 transition-opacity duration-500 ${index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                                            }`}
+                                    />
+                                ) : (
+                                    <img
+                                        key={index}
+                                        src={media.url}
+                                        alt={`${project.title} - Media ${index + 1}`}
+                                        className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${index === currentImageIndex ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                                            }`}
+                                    />
+                                )
                             ))}
 
                             {/* Navigation Arrows */}
-                            {orderedImages.length > 1 && (
+                            {mediaItems.length > 1 && (
                                 <>
                                     <button
                                         onClick={prevImage}
-                                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white transition-all hover:scale-110"
+                                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white transition-all hover:scale-110 z-20"
                                     >
                                         <ChevronLeft size={24} className="text-gray-700" />
                                     </button>
                                     <button
                                         onClick={nextImage}
-                                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white transition-all hover:scale-110"
+                                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-white transition-all hover:scale-110 z-20"
                                     >
                                         <ChevronRight size={24} className="text-gray-700" />
                                     </button>
@@ -126,15 +144,15 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                             )}
 
                             {/* Image Counter */}
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
-                                {currentImageIndex + 1} / {orderedImages.length}
+                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium z-20">
+                                {currentImageIndex + 1} / {mediaItems.length}
                             </div>
                         </div>
 
                         {/* Thumbnail Navigation */}
-                        {orderedImages.length > 1 && (
+                        {mediaItems.length > 1 && (
                             <div className="flex gap-2 p-4 overflow-x-auto bg-gray-800">
-                                {orderedImages.map((img, index) => (
+                                {mediaItems.map((media, index) => (
                                     <button
                                         key={index}
                                         onClick={() => setCurrentImageIndex(index)}
@@ -143,11 +161,17 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                                             : 'border-transparent opacity-60 hover:opacity-100'
                                             }`}
                                     >
-                                        <img
-                                            src={img.url}
-                                            alt={`Thumbnail ${index + 1}`}
-                                            className="w-full h-full object-contain bg-gray-900"
-                                        />
+                                        {media.type === 'video' ? (
+                                            <div className="w-full h-full bg-gray-900 flex items-center justify-center">
+                                                <svg className="w-8 h-8 text-white opacity-70" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z" /></svg>
+                                            </div>
+                                        ) : (
+                                            <img
+                                                src={media.url}
+                                                alt={`Thumbnail ${index + 1}`}
+                                                className="w-full h-full object-contain bg-gray-900"
+                                            />
+                                        )}
                                     </button>
                                 ))}
                             </div>
@@ -188,18 +212,6 @@ const ProjectDetailModal = ({ project, onClose, onOpenChatbot }: ProjectDetailMo
                             <p className="text-gray-600 leading-relaxed mb-6">
                                 {project.description}
                             </p>
-                        )}
-
-                        {/* Video */}
-                        {project.video_url && (
-                            <div className="mb-6">
-                                <h3 className="text-lg font-bold text-gray-900 mb-3">Project Video</h3>
-                                <video
-                                    src={project.video_url}
-                                    controls
-                                    className="w-full rounded-lg shadow-md"
-                                />
-                            </div>
                         )}
 
                         {/* Action Buttons */}
