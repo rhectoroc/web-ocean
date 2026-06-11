@@ -52,7 +52,13 @@ const Navbar = () => {
                                         const id = item.path.substring(2);
                                         const element = document.getElementById(id);
                                         if (element) {
-                                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                            const navbarHeight = 80;
+                                            const elementPosition = element.getBoundingClientRect().top;
+                                            const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+                                            window.scrollTo({
+                                                top: offsetPosition,
+                                                behavior: 'smooth'
+                                            });
                                         }
                                     }
                                 }}
@@ -115,7 +121,13 @@ const Navbar = () => {
                                         const id = item.path.substring(2);
                                         const element = document.getElementById(id);
                                         if (element) {
-                                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                            const navbarHeight = 80;
+                                            const elementPosition = element.getBoundingClientRect().top;
+                                            const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+                                            window.scrollTo({
+                                                top: offsetPosition,
+                                                behavior: 'smooth'
+                                            });
                                         }
                                     }
                                     setIsOpen(false);

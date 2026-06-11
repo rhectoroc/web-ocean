@@ -1,8 +1,20 @@
+import { useState, useEffect } from 'react';
 import { CheckCircle } from 'lucide-react';
 import { Reveal } from './Animations';
+import { fetchActiveGalleryImages, type GalleryImage } from '../lib/galleryApi';
 import './CardGallery.css';
 
 const About = () => {
+    const [images, setImages] = useState<GalleryImage[]>([]);
+
+    useEffect(() => {
+        fetchActiveGalleryImages().then(setImages).catch(console.error);
+    }, []);
+
+    const img1 = images[0]?.image_url || '/construction.png';
+    const img2 = images[1]?.image_url || '/renovation.png';
+    const img3 = images[2]?.image_url || '/quality.png';
+
     const highlights = [
         "Over 15 Years of Experience",
         "Licensed & Insured",
@@ -19,9 +31,9 @@ const About = () => {
                         <div className="flex items-center justify-center">
                             <div className="card-container bg-white shadow-lg">
                                 <div
-                                    className="card bg-blue-500 rounded-2xl h-[300px] w-full top-0 left-0"
+                                    className="card bg-blue-500 rounded-2xl h-[300px] w-full top-0 left-0 bg-cover bg-center"
                                     style={{
-                                        backgroundImage: "url('/construction.png')",
+                                        backgroundImage: `url('${img1}')`,
                                         backgroundColor: '#1e40af'
                                     }}
                                 >
@@ -33,9 +45,9 @@ const About = () => {
                                     </div>
                                 </div>
                                 <div
-                                    className="card bg-teal-600 rounded-2xl h-[200px] w-[200px] top-[305px] left-0 bottom-0"
+                                    className="card bg-teal-600 rounded-2xl h-[200px] w-[200px] top-[305px] left-0 bottom-0 bg-cover bg-center"
                                     style={{
-                                        backgroundImage: "url('/renovation.png')",
+                                        backgroundImage: `url('${img2}')`,
                                         backgroundColor: '#0d9488'
                                     }}
                                 >
@@ -47,9 +59,9 @@ const About = () => {
                                     </div>
                                 </div>
                                 <div
-                                    className="card-d3 bg-teal-600 rounded-2xl border-4 hover:border-0 border-white h-[280px] w-[305px] right-0 bottom-0"
+                                    className="card-d3 bg-teal-600 rounded-2xl border-4 hover:border-0 border-white h-[280px] w-[305px] right-0 bottom-0 bg-cover bg-center"
                                     style={{
-                                        backgroundImage: "url('/quality.png')",
+                                        backgroundImage: `url('${img3}')`,
                                         backgroundColor: '#0d9488'
                                     }}
                                 >
